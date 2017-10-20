@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Results</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'surveys/index.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="head">
+                <p>Thanks for submitting this form!You have submittted this form  {{request.session.count}} times now.</p>
+            </div>
+            <div class="content">
+                <p>Submitted Information</p>
+                <p>Your Name : {{request.session.name}}</p>
+                <p>Dojo Location : {{request.session.location}}</p>
+                <p>Favourite Language : {{request.session.language}}</p>
+                <p>Comments : {{request.session.comment}}</p>
+                <div class="btn">
+                    <form name="return" method="post" action="/refresh">
+                        {% csrf_token %}
+                        <input type="submit" value="goback">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
